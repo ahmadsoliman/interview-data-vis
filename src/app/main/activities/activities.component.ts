@@ -3,6 +3,7 @@ import { Activity } from 'src/app/core/models/activity.model';
 import { Select, Store } from '@ngxs/store';
 import { ActivitiesState } from './activities.state';
 import { Observable } from 'rxjs';
+import { FetchActivities } from './activities.actions';
 
 @Component({
   selector: 'app-activities',
@@ -10,11 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./activities.component.scss'],
 })
 export class ActivitiesComponent implements OnInit {
-  @Select(ActivitiesState.getSortedActivities) activities$!: Observable<
-    Activity
-  >;
+  activities$ = this.store.select(ActivitiesState.getActivities);
 
   constructor(private readonly store: Store) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new FetchActivities());
+  }
 }

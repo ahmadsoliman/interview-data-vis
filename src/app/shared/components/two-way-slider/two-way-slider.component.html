@@ -1,1 +1,10 @@
-<p>two-way-slider works!</p>
+<ng5-slider
+  [options]="{
+    showTicksValues: true,
+    floor: floor,
+    ceil: ceil
+  }"
+  [(value)]="lowValue"
+  [(highValue)]="highValue"
+  (valueChange)="valueChanged()"
+></ng5-slider>

@@ -7,7 +7,9 @@
 </div>
 
 <div class="slider-container">
-  <app-two-way-slider></app-two-way-slider>
+  <app-two-way-slider
+    [ceil]="(activities$ | async).length"
+  ></app-two-way-slider>
 </div>
 
 <div class="footer"></div>
