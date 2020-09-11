@@ -1,16 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
+import { Routes, RouterModule } from '@angular/router';
 
+import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
+import { ActivitiesComponent } from './main/activities/activities.component';
+import { ActivitiesState } from './main/activities/activities.state';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ActivitiesComponent,
+  },
+];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, ActivitiesComponent],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CoreModule,
+    RouterModule.forRoot(routes),
+    NgxsModule.forRoot([ActivitiesState], {
+      developmentMode: !environment.production,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

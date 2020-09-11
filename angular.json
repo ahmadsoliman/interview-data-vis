@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DataVisualisation"
+    }
+  },
+  "defaultProject": "DataVisualisation",
+  "cli": {
+    "analytics": false
+  }
 }
