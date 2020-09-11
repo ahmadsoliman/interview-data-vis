@@ -4,6 +4,7 @@ import { NgxsModule } from '@ngxs/store';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { ActivitiesComponent } from './main/activities/activities.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     CoreModule,
+    SharedModule,
     RouterModule.forRoot(routes),
     NgxsModule.forRoot([ActivitiesState], {
       developmentMode: !environment.production,
