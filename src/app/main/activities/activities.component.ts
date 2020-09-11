@@ -10,7 +10,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./activities.component.scss'],
 })
 export class ActivitiesComponent implements OnInit {
-  @Select(ActivitiesState.getActivities) activities$!: Observable<Activity>;
+  @Select(ActivitiesState.getSortedActivities) activities$!: Observable<
+    Activity
+  >;
 
   constructor(private readonly store: Store) {}
 

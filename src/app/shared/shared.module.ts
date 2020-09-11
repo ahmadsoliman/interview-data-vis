@@ -5,5 +5,6 @@ import { TwoWaySliderComponent } from './components/two-way-slider/two-way-slide
 @NgModule({
   declarations: [BarChartComponent, TwoWaySliderComponent],
   imports: [],
+  exports: [BarChartComponent, TwoWaySliderComponent],
 })
 export class SharedModule {}

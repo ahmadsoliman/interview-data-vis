@@ -23,6 +23,14 @@ export class ActivitiesState {
     return state.activities;
   }
 
+  @Selector()
+  static getSortedActivities(state: ActivitesStateModel) {
+    // this gets cached by ngxs
+    return state.activities.sort((a, b) =>
+      a.occurrences > b.occurrences ? -1 : 1
+    );
+  }
+
   @Action(FetchActivities)
   fetchActivities(ctx: StateContext<ActivitesStateModel>) {
     this.activitiesApi.getActivties().subscribe((activities: Activity[]) => {
