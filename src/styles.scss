@@ -1,6 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+@font-face {
+  font-family: "Mark OT";
+  src: url(assets/fonts/MarkOT.woff2) format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mark OT Bold";
+  src: url(assets/fonts/MarkOT-Bold.woff2) format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
   margin: 0;
   height: 100%;
+
+  font-family: "Mark OT", Arial, Helvetica, sans-serif;
 }

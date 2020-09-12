@@ -2,9 +2,8 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100%;
-  grid-gap: 50px 50px;
+  grid-gap: 40px;
 
-  font-family: monospace;
   padding: 0;
   margin: 0;
 
@@ -14,23 +13,25 @@
   }
 
   .chart-container {
-    margin: auto;
+    margin: 0 auto;
 
     .title {
       color: #bf1646;
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
+      margin-bottom: 20px;
     }
 
     .total {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
       text-align: center;
-      color: #b7b7b7;
-      font-size: 1.5rem;
+      color: #808080;
+      font-size: 1.2rem;
 
       .total-value {
         color: #028381;
+        font-size: 1.5rem;
         font-weight: bold;
       }
     }
