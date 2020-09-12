@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Activity } from 'src/app/core/models/activity.model';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { ActivitiesState } from './activities.state';
-import { Observable } from 'rxjs';
-import { FetchActivities } from './activities.actions';
+import {
+  FetchActivities,
+  SetActivitiesRangeFilter,
+} from './activities.actions';
+import { RangeValue } from 'src/app/core/models/range.model';
 
 @Component({
   selector: 'app-activities',
@@ -12,10 +15,19 @@ import { FetchActivities } from './activities.actions';
 })
 export class ActivitiesComponent implements OnInit {
   activities$ = this.store.select(ActivitiesState.getActivities);
+  rangeFilter$ = this.store.select(ActivitiesState.getRangeFilter);
 
   constructor(private readonly store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(new FetchActivities());
+  }
+
+  selectOccurrences(activity: Activity) {
+    return activity.occurrences;
+  }
+
+  sliderValue(range: RangeValue) {
+    this.store.dispatch(new SetActivitiesRangeFilter(range));
   }
 }

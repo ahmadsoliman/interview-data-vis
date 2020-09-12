@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { Routes, RouterModule } from '@angular/router';
+import { ChartsModule } from 'ng2-charts';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -27,6 +28,7 @@ const routes: Routes = [
     NgxsModule.forRoot([ActivitiesState], {
       developmentMode: !environment.production,
     }),
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

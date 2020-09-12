@@ -1,1 +1,15 @@
-<p>bar-chart works!</p>
+<div class="chart-wrapper">
+  <canvas
+    baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [colors]="barChartColors"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+    [width]="barChartWidth"
+    [height]="barChartHeight"
+  >
+  </canvas>
+</div>
