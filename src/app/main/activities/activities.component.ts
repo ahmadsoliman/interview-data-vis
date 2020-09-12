@@ -15,6 +15,9 @@ import { RangeValue } from 'src/app/core/models/range.model';
 })
 export class ActivitiesComponent implements OnInit {
   activities$ = this.store.select(ActivitiesState.getActivities);
+  activeOccurrencesTotal$ = this.store.select(
+    ActivitiesState.getTotalActiveOccurrences
+  );
   rangeFilter$ = this.store.select(ActivitiesState.getRangeFilter);
 
   constructor(private readonly store: Store) {}

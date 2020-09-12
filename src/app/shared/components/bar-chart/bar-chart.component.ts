@@ -63,7 +63,7 @@ export class BarChartComponent implements OnInit {
     this.barChartColors = [
       {
         backgroundColor: this.data.map((_, i) => {
-          return i + 1 >= this.activeRange.low && i + 1 <= this.activeRange.high
+          return RangeValue.isWithinRange(this.activeRange, i + 1)
             ? this.activeColor
             : this.inActiveColor;
         }),

@@ -2,6 +2,9 @@
 
 <div class="chart-container">
   <div class="title">Activities Occurrences</div>
+  <div class="total">
+    <small>Total: {{ activeOccurrencesTotal$ | async }}</small>
+  </div>
 
   <app-bar-chart
     [data]="(activities$ | async)?.map(selectOccurrences)"

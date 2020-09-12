@@ -34,6 +34,17 @@ export class ActivitiesState {
     return state.rangeFilter;
   }
 
+  @Selector()
+  static getTotalActiveOccurrences(state: ActivitesStateModel) {
+    let total = 0;
+    state.activities.map((activity, index) => {
+      if (RangeValue.isWithinRange(state.rangeFilter, index + 1)) {
+        total += activity.occurrences;
+      }
+    });
+    return total;
+  }
+
   @Action(FetchActivities)
   fetchActivities(ctx: StateContext<ActivitesStateModel>) {
     this.activitiesApi.getActivties().subscribe((activities: Activity[]) => {
