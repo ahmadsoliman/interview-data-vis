@@ -4,8 +4,12 @@ import 'jest';
 
 import { ActivitiesMockApiService } from '../../core/api/activities-mock-api.service';
 import { ActivitiesState } from './activities.state';
-import { FetchActivities } from './activities.actions';
+import {
+  FetchActivities,
+  SetActivitiesRangeFilter,
+} from './activities.actions';
 import { Activity } from 'src/app/core/models/activity.model';
+import { RangeValue } from 'src/app/core/models/range.model';
 
 describe('ActivitiesState', () => {
   let store: Store;
@@ -36,7 +40,23 @@ describe('ActivitiesState', () => {
       .selectOnce(ActivitiesState.getActivities)
       .subscribe((data: Activity[]) => {
         errorWrapper(done, () => {
-          expect(data).toEqual(ActivitiesMockApiService.activitiesList);
+          if (data.length > 0) {
+            expect(data).toEqual(ActivitiesMockApiService.activitiesList);
+          }
+        });
+      });
+  });
+
+  it('SetActivitiesRangeFilter should aet Activities RangeFilter', (done) => {
+    const filter = { low: 11, high: 19 };
+    store.dispatch(new SetActivitiesRangeFilter(filter));
+    store
+      .selectOnce(ActivitiesState.getRangeFilter)
+      .subscribe((data: RangeValue) => {
+        errorWrapper(done, () => {
+          if (data.low > 0) {
+            expect(data).toEqual(filter);
+          }
         });
       });
   });

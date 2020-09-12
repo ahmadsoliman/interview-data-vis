@@ -42,7 +42,7 @@ export class TwoWaySliderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.subject.pipe(debounceTime(100)).subscribe((rangeValue: RangeValue) => {
+    this.subject.pipe(debounceTime(50)).subscribe((rangeValue: RangeValue) => {
       this.valueChange.emit(rangeValue);
     });
   }

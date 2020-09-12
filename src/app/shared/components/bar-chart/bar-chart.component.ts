@@ -17,7 +17,7 @@ export class BarChartComponent implements OnInit {
     return this._data;
   }
   @Input() set data(value) {
-    this._data = value;
+    this._data = [...value];
     this.createChart();
   }
 
@@ -26,6 +26,9 @@ export class BarChartComponent implements OnInit {
     return this._activeRange;
   }
   @Input() set activeRange(value) {
+    if (value.low === 0) {
+      value = { low: 1, high: 1 };
+    }
     this._activeRange = value;
     this.setColors();
   }
@@ -44,6 +47,9 @@ export class BarChartComponent implements OnInit {
   @Input() barChartWidth = 900;
   @Input() barChartHeight = 500;
 
+  @Input() activeColor = '#028381';
+  @Input() inActiveColor = '#b7b7b7';
+
   ngOnInit(): void {}
 
   createChart() {
@@ -58,8 +64,8 @@ export class BarChartComponent implements OnInit {
       {
         backgroundColor: this.data.map((_, i) => {
           return i + 1 >= this.activeRange.low && i + 1 <= this.activeRange.high
-            ? '#028381'
-            : '#b7b7b7';
+            ? this.activeColor
+            : this.inActiveColor;
         }),
       },
     ];
