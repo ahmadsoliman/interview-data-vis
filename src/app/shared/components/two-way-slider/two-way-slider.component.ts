@@ -1,10 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Options } from 'ng5-slider';
-
-export interface RangeValue {
-  low: number;
-  high: number;
-}
+import { RangeValue } from 'src/app/core/models/range.model';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-two-way-slider',
@@ -19,6 +16,7 @@ export class TwoWaySliderComponent implements OnInit {
   @Input() set floor(value) {
     this._floor = value;
     this.lowValue = value;
+    this.valueChanged();
   }
 
   private _ceil = 10;
@@ -31,6 +29,7 @@ export class TwoWaySliderComponent implements OnInit {
     }
     this._ceil = value;
     this.highValue = value;
+    this.valueChanged();
   }
 
   @Input() lowValue = this.floor;
@@ -38,11 +37,18 @@ export class TwoWaySliderComponent implements OnInit {
 
   @Output() valueChange = new EventEmitter<RangeValue>();
 
+  subject: Subject<RangeValue> = new Subject();
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subject.pipe(debounceTime(100)).subscribe((rangeValue: RangeValue) => {
+      this.valueChange.emit(rangeValue);
+    });
+  }
 
   valueChanged() {
-    this.valueChange.emit({ low: this.lowValue, high: this.highValue });
+    const rangeValue: RangeValue = { low: this.lowValue, high: this.highValue };
+    this.subject.next(rangeValue);
   }
 }
